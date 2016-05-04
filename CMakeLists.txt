@@ -11,10 +11,10 @@ set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Statically specifies what build type 
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "Whether to build shared or static libraries.")
 
 # BOOST BUILD VARIABLES
-set(Boost_DEBUG OFF CACHE BOOL "Show boost debugging information.")
-set(Boost_USE_STATIC_LIBS ON CACHE BOOL "Whether to use shared or static boost libraries when building.")
-set(Boost_USE_STATIC_RUNTIME OFF CACHE BOOL "If enabled, searches for boost libraries linked against a static C++ standard library ('s' ABI tag). Defaults to OFF.")
-set(Boost_USE_MULTITHREADED ON CACHE BOOL "Whether to link to multi-threaded boost libraries when building.")
+#set(Boost_DEBUG OFF CACHE BOOL "Show boost debugging information.")
+#set(Boost_USE_STATIC_LIBS ON CACHE BOOL "Whether to use shared or static boost libraries when building.")
+#set(Boost_USE_STATIC_RUNTIME OFF CACHE BOOL "If enabled, searches for boost libraries linked against a static C++ standard library ('s' ABI tag). Defaults to OFF.")
+#set(Boost_USE_MULTITHREADED ON CACHE BOOL "Whether to link to multi-threaded boost libraries when building.")
 
 # PLATFORM-SPECIFIC FLAGS
 if(UNIX)
@@ -27,33 +27,36 @@ if(WIN32)
 endif()
 
 # LIBRARIES
-find_package(Boost 1.58.0 REQUIRED system timer chrono)
+#find_package(Boost 1.58.0 REQUIRED system timer chrono)
 
 # LIBRARY CHECKS
-if (NOT Boost_FOUND)
-    if(BUILD_SHARED_LIBS)
-        message(FATAL_ERROR "Check to make sure you have built shared boost libraries.")
-    else()
-        message(FATAL_ERROR "Check to make sure you have built static boost libraries.")
-    endif(BUILD_SHARED_LIBS)
-endif(NOT Boost_FOUND)
+#if (NOT Boost_FOUND)
+#    if(BUILD_SHARED_LIBS)
+#        message(FATAL_ERROR "Check to make sure you have built shared boost libraries.")
+#    else()
+#        message(FATAL_ERROR "Check to make sure you have built static boost libraries.")
+#    endif(BUILD_SHARED_LIBS)
+#endif(NOT Boost_FOUND)
 
 # LIBRARY FLAGS
-if(CMAKE_BUILD_TYPE MATCHES Debug)
-    set(CMAKE_VERBOSE_MAKEFILE true)
-    add_definitions(-DBOOST_NETWORK_DEBUG)
-endif(CMAKE_BUILD_TYPE MATCHES Debug)
+#if(CMAKE_BUILD_TYPE MATCHES Debug)
+#    set(CMAKE_VERBOSE_MAKEFILE true)
+#    add_definitions(-DBOOST_NETWORK_DEBUG)
+#endif(CMAKE_BUILD_TYPE MATCHES Debug)
 
 # LIBRARY INCLUDES SO WE CAN INCLUDE THEM IN PROJECT.
-include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
+#include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
 # ENABLE TESTING WITH CMAKE'S CTEST
 enable_testing()
 #INCLUDE(CTest)
 
 # ADD OUR ROOT DIRECTORY FOR INCLUDE SEARCHES
-include_directories(BEFORE ${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(BEFORE ${CMAKE_CURRENT_SOURCE_DIR}/libs/)
 
-# ADD OUR EXECUTABLE'S DIRECTORY
+# ADD OUR LIB DIRECTORY
+add_subdirectory(libs/tesla/)
+# ADD OUR EXECUTABLE DIRECTORY
 add_subdirectory(src/)
+# ADD OUR TESTING DIRECTORY
 add_subdirectory(test/)

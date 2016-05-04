@@ -24,7 +24,7 @@ What this means is placing the build files outside of the project's source root 
         1. cd to the directory we created in step 1. `cpp_tesla_build/` (important!)
 3. Set appropriate cmake variables
     * If building with a CMake GUI application:
-        1. Set appropriate variable values in 'cache values'.
+        1. Set appropriate variable_name values in 'cache values'.
     * If building through a CMake CLI (command line interface):
         1. You can pass options to CMake CLI using the `-D <var>:<type>=<value>` command.
         2. `cmake [options] <path-to-source>`
