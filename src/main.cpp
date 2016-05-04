@@ -35,9 +35,10 @@ int main(int argc, const char * argv []) {
             // Implicit conversion
             solution.add_equation(line);
         }
+        solution.resolve_equations();
         auto solutions = solution.get_solved();
-        for(auto & equation : solutions) {
-            cout << equation << "\n";
+        for(auto & kv : solutions) {
+            cout << kv.first.str() << " = " << kv.second << "\n";
         }
     }
     return 0;

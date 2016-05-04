@@ -5,8 +5,10 @@
 #ifndef CPP_TESLA_SOLUTION_H
 #define CPP_TESLA_SOLUTION_H
 
+#include <string>
 #include <unordered_map>
 #include <vector>
+#include <map>
 #include "equation.h"
 
 namespace tesla {
@@ -17,12 +19,14 @@ namespace tesla {
 
 		void add_equation(const equation & eq);
 
-		std::vector<equation> get_solved();
+		void resolve_equations();
+
+		std::map<variable_name, unsigned int> get_solved() const;
 
 	private:
-		std::unordered_map<std::string, equation> _equations;
+		std::map<variable_name, equation> _equations;
 
-		std::unordered_map<std::string, equation> _solutions;
+		std::map<variable_name, unsigned int> _solutions;
 
 		unsigned int _total;
 	};

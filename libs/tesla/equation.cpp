@@ -8,7 +8,11 @@ using namespace std;
 using namespace tesla;
 
 equation::equation(const string & str)
-		: _equation(str), _lhs(parse_lhs(_equation)), _rhs(parse_rhs(_equation)) { }
+		: _equation(str),
+		  _variables(),
+		  _constants(),
+		  _lhs(parse_lhs(_equation)),
+		  _rhs(parse_rhs(_equation)) { }
 
 variable_name equation::get_lhs() const {
 	return _lhs;
@@ -45,6 +49,9 @@ vector<string> equation::parse_rhs(const std::string & input) {
 		if(is_delimiter(c)) {
 			if(!token.empty()) {
 				rhs.push_back(token);
+				if(isalpha(token[0])) {
+					_variables.push_back(token);
+				}
 				token.clear();
 			}
 		} else {
@@ -57,3 +64,12 @@ vector<string> equation::parse_rhs(const std::string & input) {
 string equation::str() const {
 	return _equation;
 }
+
+std::vector<variable_name> equation::get_variables() const {
+	return _variables;
+}
+
+std::vector<unsigned int> equation::get_constants() const {
+	return _constants;
+}
+

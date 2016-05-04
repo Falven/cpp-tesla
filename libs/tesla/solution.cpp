@@ -12,20 +12,36 @@ solution::solution()
 }
 
 void solution::add_equation(const equation & eq) {
-//	string eq_name = eq.get_lhs().str();
-//	auto dependencies = eq.get_rhs();
-
-
-//	vector<string>::const_iterator itr, end;
-//	for(itr = eq.begin(), end = _equations.end(); itr != end; ++itr)
-//	_equations.insert( {eq_name , eq} );
+	_equations.insert( { eq.get_lhs(), eq } );
 }
 
-vector<equation> solution::get_solved() {
-//	vector<equation> solutions(_equations.size());
-//	unordered_map<string, equation>::const_iterator itr, end;
-//	for(itr = _equations.begin(), end = _equations.end(); itr != end; ++itr) {
-//		solutions.push_back(itr->second);
-//	}
-	return vector<equation>();
+void solution::resolve_equations() {
+	for (auto & kv : _equations) {
+		auto equation_name = kv.first;
+		auto equation = kv.second;
+		auto equation_variables = equation.get_variables();
+		auto equation_constants = equation.get_constants();
+		std::vector<variable_name>::iterator var_itr;
+		std::map<variable_name, unsigned int>::iterator sol_itr;
+		for (var_itr = equation_variables.begin();
+		     var_itr != equation_variables.end();) {
+			if((sol_itr = _solutions.find(*var_itr)) >= _solutions.end()) {
+				break;
+			}
+			equation_variables.erase(var_itr);
+			equation_constants.push_back(sol_itr->second);
+		}
+		if(equation_variables.empty()) {
+			unsigned int total;
+			for (auto & variable : equation_constants) {
+				total += variable;
+			}
+			_solutions.insert( { equation_name, total } );
+		}
+	}
 }
+
+std::map<variable_name, unsigned int> solution::get_solved() const {
+	return _solutions;
+}
+

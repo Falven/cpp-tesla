@@ -20,6 +20,10 @@ namespace tesla {
 
 		std::vector<std::string> get_rhs() const;
 
+		std::vector<variable_name> get_variables() const;
+
+		std::vector<unsigned int> get_constants() const;
+
 		std::string str() const;
 
 	private:
@@ -29,6 +33,10 @@ namespace tesla {
 		std::string::const_iterator _itr;
 
 		std::string::const_iterator _end;
+
+		std::vector<variable_name> _variables;
+
+		std::vector<unsigned int> _constants;
 
 		variable_name _lhs;
 
