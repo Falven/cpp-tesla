@@ -16,23 +16,27 @@ namespace tesla {
 
 		equation(const std::string & str);
 
-		variable_name get_lhs() const;
+		variable_name get_variable_name() const;
 
 		std::vector<std::string> get_rhs() const;
 
 		std::vector<variable_name> get_variables() const;
 
+		bool remove_variable(const variable_name & varname);
+
 		std::vector<unsigned int> get_constants() const;
+
+		void add_constant(const unsigned int & constant);
+
+		bool operator==(const equation & other);
+
+		bool operator!=(const equation & other);
 
 		std::string str() const;
 
 	private:
 
 		std::string _equation;
-
-		std::string::const_iterator _itr;
-
-		std::string::const_iterator _end;
 
 		std::vector<variable_name> _variables;
 
@@ -42,13 +46,17 @@ namespace tesla {
 
 		std::vector<std::string> _rhs;
 
-		std::string parse_lhs(const std::string & input);
+		std::string::const_iterator parse_lhs();
 
-		std::vector<std::string> parse_rhs(const std::string & input);
+		void parse_rhs(std::string::const_iterator itr);
 
-		bool is_delimiter(const char & c);
+		bool is_delimiter(const char & c) const;
 
-		bool is_separator(const char &c);
+		bool is_separator(const char &c) const;
+
+		bool is_operator(const char &c) const;
+
+		void store_token(const std::string & token);
 	};
 
 }

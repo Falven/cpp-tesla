@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <altivec.h>
 #include <vector>
 
 #include "tesla/solution.h"

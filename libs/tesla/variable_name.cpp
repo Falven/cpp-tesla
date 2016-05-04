@@ -8,31 +8,47 @@
 #include "variable_name.h"
 
 using namespace std;
+using namespace tesla;
 
-tesla::variable_name::variable_name(const string & name)
-		: _name(validate_name(name)) {
-}
+variable_name::variable_name() : _name() {}
 
-string tesla::variable_name::validate_name(const string & str) {
+variable_name::variable_name(const string & name) : _name(validate_name(name)) {}
+
+string variable_name::validate_name(const string & str) {
 	string::const_iterator itr, end;
 	for(itr = str.cbegin(), end = str.cend(); itr != end; ++itr) {
 		if(!isalpha(*itr)) {
 			throw std::invalid_argument(" A variable name can only be composed"
-					                            "of letters from the alphabet");
+					                            "of letters from the alphabet.");
 		}
 	}
 	return str;
 }
 
-std::string tesla::variable_name::str() const {
+std::string variable_name::str() const {
 	return _name;
 }
 
-bool tesla::variable_name::operator==(const string & str) const {
+bool variable_name::operator==(const string & str) {
 	return _name == str;
 }
 
-bool tesla::variable_name::operator!=(const std::string & str) const {
+bool variable_name::operator!=(const std::string & str) {
 	return _name != str;
 }
+
+variable_name & variable_name::operator+=(const char & c) {
+	_name += c;
+	return *this; // return the result by reference
+}
+
+bool variable_name::operator==(const variable_name & varname) {
+	return _name == varname.str();
+}
+
+bool variable_name::operator!=(const variable_name & varname) {
+	return _name != varname.str();
+}
+
+
 

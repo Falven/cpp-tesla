@@ -8,11 +8,14 @@
       <sourceFolder url="file://$MODULE_DIR$/test/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/equation_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/variable_name_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/solution_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/main_test.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/libs/tesla/variable_name.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/libs/tesla/equation_solver.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/libs/tesla/equation.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/libs/tesla/solution.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/libs/tesla/equation.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/libs/tesla/variable_name.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/libs/tesla/equation_solver.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/libs/tesla/variable_name.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/libs/tesla/solution.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/libs/tesla/CMakeLists.txt" isTestSource="false" />

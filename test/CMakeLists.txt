@@ -22,3 +22,11 @@ target_link_libraries(equation_test cpp-tesla-lib)
 # OUR TEST NEEDS THIS LIB TO BE BUILT FIRST...
 add_dependencies(equation_test cpp-tesla-lib)
 add_test(NAME test_equation COMMAND equation_test)
+
+# SOLUTION_TEST
+set(SOURCE_FILES solution_test.cpp)
+add_executable(solution_test solution_test.cpp)
+target_link_libraries(solution_test cpp-tesla-lib)
+# OUR TEST NEEDS THIS LIB TO BE BUILT FIRST...
+add_dependencies(solution_test cpp-tesla-lib)
+add_test(NAME test_solution COMMAND solution_test)

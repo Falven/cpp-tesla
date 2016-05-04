@@ -11,10 +11,13 @@ equation::equation(const string & str)
 		: _equation(str),
 		  _variables(),
 		  _constants(),
-		  _lhs(parse_lhs(_equation)),
-		  _rhs(parse_rhs(_equation)) { }
+		  _lhs(),
+		  _rhs()
+{
+	parse_rhs(parse_lhs());
+}
 
-variable_name equation::get_lhs() const {
+variable_name equation::get_variable_name() const {
 	return _lhs;
 }
 
@@ -22,43 +25,41 @@ vector<string> equation::get_rhs() const {
 	return _rhs;
 }
 
-bool equation::is_delimiter(const char & c) {
+bool equation::is_delimiter(const char & c) const {
 	return c == ' ' || c == '\t';
 }
 
-bool equation::is_separator(const char & c) {
+bool equation::is_separator(const char & c) const {
 	return c == '=';
 }
 
-string equation::parse_lhs(const std::string & input) {
-	string lhs;
-	char c;
-	for(_itr = input.cbegin(), c = *_itr, _end = input.cend(); !is_separator(c); c = *(++_itr)) {
-		if(!is_delimiter(c)) {
-			lhs += c;
-		}
-	}
-	return lhs;
+bool equation::is_operator(const char &c) const {
+	return c == '+';
 }
 
-vector<string> equation::parse_rhs(const std::string & input) {
-	vector<string> rhs;
+string::const_iterator equation::parse_lhs() {
+	char c;
+	string::const_iterator itr;
+	for(itr = _equation.cbegin(), c = *itr; !is_separator(c); c = *(++itr)) {
+		if(!is_delimiter(c)) {
+			_lhs += c;
+		}
+	}
+	return ++itr;
+}
+
+void equation::parse_rhs(std::string::const_iterator itr) {
 	string token;
 	char c;
-	for(c = *_itr; _itr != _end; c = *(++_itr)) {
+	for(c = *itr; itr != _equation.cend(); c = *(++itr)) {
 		if(is_delimiter(c)) {
-			if(!token.empty()) {
-				rhs.push_back(token);
-				if(isalpha(token[0])) {
-					_variables.push_back(token);
-				}
-				token.clear();
-			}
+			store_token(token);
+			token.clear();
 		} else {
 			token += c;
 		}
 	}
-	return rhs;
+	store_token(token);
 }
 
 string equation::str() const {
@@ -73,3 +74,36 @@ std::vector<unsigned int> equation::get_constants() const {
 	return _constants;
 }
 
+void equation::store_token(const std::string & token) {
+	if(!token.empty()) {
+		_rhs.push_back(token);
+		if (isalpha(token[0])) {
+			_variables.push_back(token);
+		} else {
+			if (isdigit(token[0])) {
+				_constants.push_back(static_cast<unsigned int>(stoul(token)));
+			}
+		}
+	}
+}
+
+bool equation::remove_variable(const variable_name & varname) {
+	auto itr = std::find(_variables.begin(), _variables.end(), varname);
+	if(itr != _variables.end()) {
+		_variables.erase(itr);
+		return true;
+	}
+	return false;
+}
+
+void equation::add_constant(const unsigned int & constant) {
+	_constants.push_back(constant);
+}
+
+bool equation::operator!=(const equation &other) {
+	return _equation != other._equation;
+}
+
+bool equation::operator==(const equation &other) {
+	return _equation == other._equation;;
+}

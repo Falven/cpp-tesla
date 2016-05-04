@@ -12,13 +12,21 @@ namespace tesla {
 
 	class variable_name {
 	public:
+		variable_name();
+
 		variable_name(const std::string & name);
 
 		std::string str() const;
 
-		bool operator==(const std::string & str) const;
+		bool operator==(const std::string & str);
 
-		bool operator!=(const std::string & str) const;
+		bool operator==(const variable_name & varname);
+
+		bool operator!=(const std::string & str);
+
+		bool operator!=(const variable_name & varname);
+
+		variable_name & operator+=(const char & c);
 
 	private:
 		std::string _name;
