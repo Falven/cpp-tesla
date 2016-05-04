@@ -6,6 +6,7 @@
 #define CPP_TESLA_SOLUTION_H
 
 #include <unordered_map>
+#include <vector>
 #include "equation.h"
 
 namespace tesla {
@@ -15,6 +16,8 @@ namespace tesla {
 		solution();
 
 		void add_equation(const equation & eq);
+
+		std::vector<equation> get_solved();
 
 	private:
 		std::unordered_map<std::string, equation> _equations;

@@ -4,13 +4,26 @@
 
 #include "equation.h"
 
+using namespace std;
+using namespace tesla;
 
-tesla::equation::equation() : _lhs("") {
-
+equation::equation(const string &str) : _lhs("") {
 }
 
-variable_name tesla::equation::get_name() const {
+variable_name equation::get_name() const {
 	return _lhs;
 }
+
+ostream & operator<< (ostream & out, const equation & eqn)
+{
+	out << eqn.str();
+	return out;
+}
+
+std::string equation::str() const {
+	return _lhs.str() + " = ";
+}
+
+
 
 

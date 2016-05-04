@@ -12,9 +12,13 @@ namespace tesla {
 
 	class equation {
 	public:
-		equation();
+		equation(const std::string & str);
 
 		variable_name get_name() const;
+
+		std::string str() const;
+
+		friend std::ostream & operator<< (std::ostream & out, const equation & eqn);
 
 	private:
 		variable_name _lhs;
