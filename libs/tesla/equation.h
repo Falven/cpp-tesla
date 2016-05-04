@@ -13,9 +13,12 @@ namespace tesla {
 	class equation {
 	public:
 		equation();
+
+		variable_name get_name() const;
+
 	private:
 		variable_name _lhs;
-		variable_name _rhs;
+
 	};
 
 }

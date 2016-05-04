@@ -5,7 +5,12 @@
 #include "equation.h"
 
 
-tesla::equation::equation() : _lhs(""), _rhs("") {
+tesla::equation::equation() : _lhs("") {
 
 }
+
+variable_name tesla::equation::get_name() const {
+	return _lhs;
+}
+
 

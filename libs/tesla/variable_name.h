@@ -13,6 +13,9 @@ namespace tesla {
 	class variable_name {
 	public:
 		variable_name(const std::string & name);
+
+		std::string str();
+
 	private:
 		std::string _name;
 

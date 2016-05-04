@@ -23,3 +23,8 @@ string tesla::variable_name::validate_name(const string & str) {
 	}
 	return str;
 }
+
+std::string tesla::variable_name::str() {
+	return _name;
+}
+
