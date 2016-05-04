@@ -22,6 +22,8 @@ namespace tesla {
 	private:
 		std::unordered_map<std::string, equation> _equations;
 
+		std::unordered_map<std::string, equation> _solutions;
+
 		unsigned int _total;
 	};
 

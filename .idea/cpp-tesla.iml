@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/equation_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/variable_name_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/main_test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/libs/tesla/variable_name.cpp" isTestSource="false" />

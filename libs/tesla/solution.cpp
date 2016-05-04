@@ -4,14 +4,28 @@
 
 #include "solution.h"
 
-void tesla::solution::add_equation(const tesla::equation &eq) {
-	_equations.insert({ eq.get_name().str(), eq});
+using namespace std;
+using namespace tesla;
+
+solution::solution()
+		: _total(0), _equations() {
 }
 
-tesla::solution::solution() {
+void solution::add_equation(const equation & eq) {
+//	string eq_name = eq.get_lhs().str();
+//	auto dependencies = eq.get_rhs();
 
+
+//	vector<string>::const_iterator itr, end;
+//	for(itr = eq.begin(), end = _equations.end(); itr != end; ++itr)
+//	_equations.insert( {eq_name , eq} );
 }
 
-std::vector<tesla::equation> tesla::solution::get_solved() {
-	return std::vector<tesla::equation>();
+vector<equation> solution::get_solved() {
+//	vector<equation> solutions(_equations.size());
+//	unordered_map<string, equation>::const_iterator itr, end;
+//	for(itr = _equations.begin(), end = _equations.end(); itr != end; ++itr) {
+//		solutions.push_back(itr->second);
+//	}
+	return vector<equation>();
 }

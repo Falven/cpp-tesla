@@ -16,6 +16,10 @@ namespace tesla {
 
 		std::string str() const;
 
+		bool operator==(const std::string & str) const;
+
+		bool operator!=(const std::string & str) const;
+
 	private:
 		std::string _name;
 

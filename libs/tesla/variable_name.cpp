@@ -28,3 +28,11 @@ std::string tesla::variable_name::str() const {
 	return _name;
 }
 
+bool tesla::variable_name::operator==(const string & str) const {
+	return _name == str;
+}
+
+bool tesla::variable_name::operator!=(const std::string & str) const {
+	return _name != str;
+}
+
