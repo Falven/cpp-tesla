@@ -63,5 +63,5 @@ To run the tests:
 
 ![Sample CTest results][ctest]
 
-[cmake]: https://github.com/Falven/cpp_tesla/raw/master/resources/cmake.png "CMake Sample Results"
-[ctest]: https://github.com/Falven/cpp_tesla/raw/master/resources/ctest.png "CTest Sample Results"
+[cmake]: https://github.com/Falven/cpp-tesla/raw/master/resources/cmake.png "CMake Sample Results"
+[ctest]: https://github.com/Falven/cpp-tesla/raw/master/resources/ctest.png "CTest Sample Results"
